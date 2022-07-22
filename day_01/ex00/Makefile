@@ -1,4 +1,4 @@
-NAME		= megaphone
+NAME		= zombie
 CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
 SRC			= megaphone.cpp
