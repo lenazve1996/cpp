@@ -1,11 +1,6 @@
 #include <string>
 #include <iostream> 
 
-class PhoneBook
-{
-
-};
-
 class Contact 
 {
 
@@ -15,7 +10,10 @@ public:
 	std::string nickname;
 	std::string phone_number;
 	std::string darkest_secret;
-	void add_contact(){
-		
-	}
+};
+
+class PhoneBook
+{
+public:
+	Contact	contacts[8];
 };
