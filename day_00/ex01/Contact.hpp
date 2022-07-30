@@ -1,5 +1,9 @@
+#ifndef CONTACT_H
+# define CONTACT_H
 #include <string>
 #include <iostream> 
+#include <iomanip>
+#include <stdlib.h>
 
 class Contact 
 {
@@ -12,8 +16,4 @@ public:
 	std::string darkest_secret;
 };
 
-class PhoneBook
-{
-public:
-	Contact	contacts[8];
-};
+#endif
