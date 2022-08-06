@@ -1,95 +1,73 @@
 #include "PhoneBook.hpp"
 
-Contact	add_new_contact()
+Contact	create_new_contact()
 {
 	Contact new_contact;
+	std::string input;
 
 	std::cout << "Input your first name" << std::endl;
-	std::cin >> new_contact.first_name;
+	std::cin >> input;
+	new_contact.setFirstName(input);
 	std::cout << "Input your last name" << std::endl;
-	std::cin >> new_contact.last_name;
+	std::cin >> input;
+	new_contact.setLastName(input);
 	std::cout << "Input your nickname" << std::endl;
-	std::cin >> new_contact.nickname;
+	std::cin >> input;
+	new_contact.setNickName(input);
 	std::cout << "Input your phone number" << std::endl;
-	std::cin >> new_contact.phone_number;
+	std::cin >> input;
+	new_contact.setPhoneNumber(input);
 	std::cout << "Input your darkest secret" << std::endl;
-	std::cin >> new_contact.darkest_secret;
-	std::cout << "NEW CONTACT ADDED" << std::endl;
+	std::cin >> input;
+	new_contact.setDarkestSecret(input);
+	std::cout << "NEW CONTACT ADDED" << std::endl << std::endl;;
 	return (new_contact);
 }
-void	output_table_settings()
+
+int	get_index()
 {
-	std::cout << "|";
-	std::cout << std::setw (10);
+	int index = -1;
+
+	while (index < 1 || index > 8)
+	{
+		std::cout << "Input the index of contact from 1 to 8" << std::endl << std::endl;
+		std::cin >> index;
+	}
+	return (index);
 }
 
-void	output_column_names()
+void	PhoneBook::search()
 {
-	output_table_settings();
-	std::cout << "index";
-	output_table_settings();
-	std::cout << "first_name";
-	output_table_settings();
-	std::cout << "last_name";
-	output_table_settings();
-	std::cout << "nickname" << "|" << std::endl;
-}
+	int			index;
 
-void	display_contact(PhoneBook my_phonebook)
-{
-	char	*input;
-	int		index;
-	char	*endpoint;
-
-	std::cin >> input;
-	index = strtol(input, &endpoint, 10);
-	if (*endpoint)
-	{
-		std::cout << "Input the number from 1 to 8" << std::endl;
-	}
-	else if (index < 1 || index > 8)
-	{
-		std::cout << "Input the number from 1 to 8" << std::endl;
-	}
-	else
-	{
-		output_column_names();
-		output_table_settings();
-		std::cout << --index;
-		output_table_settings();
-		if (my_phonebook.contacts[index].first_name.size() > 9)
-		{
-			my_phonebook.contacts[index].first_name.replace(9, 1, ".");
-			my_phonebook.contacts[index].first_name.resize(10);
-		}
-		std::cout << my_phonebook.contacts[index].first_name;
-		output_table_settings();
-		std::cout << my_phonebook.contacts[index].last_name;
-		output_table_settings();
-		std::cout << my_phonebook.contacts[index].nickname << "|" << std::endl;
-	}
+	this->print_phonebook();
+	index = get_index() - 1;
+	this->print_one_contact(index);
 }
 
 int	main()
 {
 	Contact		new_contact;
-	PhoneBook	my_phonebook;
+	PhoneBook	ph_book;
 	std::string command;
 	int			index;
 
+	index = 0;
 	while (true)
 	{
+		std::cout << "Input the command (ADD, SEARCH or EXIT)" << std::endl;
 		std::cin >> command;
 		if (command == "ADD")
 		{
 			if (index == 8)
 				index = 0;
-			new_contact = add_new_contact();
-			my_phonebook.contacts[index] = new_contact;
+			
+			new_contact = create_new_contact();
+			ph_book.addContact(new_contact, index);
 			++index;
 		}
 		else if (command == "SEARCH")
-			display_contact(my_phonebook);
+			ph_book.search();
 		else if (command == "EXIT")
 			return 0;
 		else
