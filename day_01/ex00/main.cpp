@@ -2,13 +2,11 @@
 
 int main()
 {
-    std::string first_name = "Jane";
-    std::string second_name = "Jack";
 
-    Zombie *first = newZombie( first_name );
+    Zombie *first = newZombie( "Jane" );
     first->announce();
     delete first;
 
-    randomChump( second_name );
+    randomChump( "Jack" );
     return 0;
 }
