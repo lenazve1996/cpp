@@ -8,8 +8,7 @@
 class HumanA {
 
 public:
-    // HumanA ( std::string name, Weapon type );
-    HumanA ( std::string name, Weapon type ) : _name(name), _weapRef(type) {};
+    HumanA ( std::string name, Weapon &weapon );
     ~HumanA ();
     void attack();
 

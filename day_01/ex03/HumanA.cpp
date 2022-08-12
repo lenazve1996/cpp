@@ -1,6 +1,6 @@
 #include "HumanA.hpp"
 
-HumanA::HumanA ( std::string name, Weapon type ) : _weapRef(type), _name(name)
+HumanA::HumanA ( std::string name, Weapon &weapon ) : _weapRef( weapon ), _name( name )
 {
     std::cout << "Constructor for " << _name << " called" << std::endl;
     return;

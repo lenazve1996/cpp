@@ -14,9 +14,9 @@ HumanB::~HumanB ()
     return;
 }
 
-void HumanB::setWeapon( Weapon weapon_type )
+void HumanB::setWeapon( Weapon weapon )
 {
-    *(_weapPtr) = weapon_type;
+    _weapPtr = &weapon;
 }
 
 void HumanB::attack()
