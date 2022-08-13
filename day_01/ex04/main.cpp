@@ -1,30 +1,82 @@
 #include <iostream>
 #include <fstream>
 
-int main(int ac, char **av) {
+int findFileLen( char *fileName )
+{
+    std::ifstream file (fileName);
 
-    std::ifstream file ("main.cpp");
-    if (file)
+    if (file.is_open())
     {
         file.seekg(0, file.end);
         int len = file.tellg();
         file.seekg(0 , file.beg);
-
-        char    *content = new char [len];
-        file.read(content, len);
-        std::string str = content;
-        std::string s1 = "include";
-        int s1_len = s1.length();
-        size_t  index = 0;
-        while (1)
-        {
-            std::size_t where = str.find(s1, index);
-            if (where == std::string::npos)
-                break ;
-            std::cout << str.substr(index, where - index);
-            std::cout << "kek";
-            index = where + s1_len;
-        }
-        std::cout << str.substr(index, str.length() - index);
+        file.close();
+        return (len);
     }
+    else
+    {
+        std::cout << "error: failed to open a file" << std::endl;
+        exit (1);
+    }
+}
+
+std::string readFile(int fileLen, char *fileName)
+{
+    std::ifstream file (fileName);
+
+    char *buff = new char [fileLen];
+    file.read(buff, fileLen);
+    file.close();
+    std::string content = buff;
+    return (content);
+}
+
+std::string nameNewFile(char *inputFile)
+{
+    std::string inFile = inputFile;
+    std::string outFile = inFile.append(".replace");
+    return (outFile);
+}
+
+void    replaceOutputContent(std::string content, char **av)
+{
+    std::string searchStr = av[2];
+    std::string replacement = av[3];
+    int         searchStrLen = searchStr.length();
+    size_t      index = 0;
+
+    std::string outFile = nameNewFile(av[1]);
+    std::ofstream ofs(outFile);
+    while (true)
+    {
+        std::size_t occurance = content.find(searchStr, index);
+        if (occurance == std::string::npos)
+            break ;
+        ofs << content.substr(index, occurance - index);
+        ofs << replacement;
+        index = occurance + searchStrLen;
+    }
+    ofs << content.substr(index, content.length() - index);
+    ofs.close();
+}
+
+int main(int ac, char **av) {
+
+    std::ifstream file ("main.cpp");
+
+    if (ac != 4)
+    {
+        std::cout << "error: wrong number of arguments" << std::endl;
+    }
+    else if (av[2][0] == '\0')
+    {
+        std::cout << "str1 is empty" << std::endl;
+    }
+    else
+    {
+        int fileLen = findFileLen(av[1]);
+        std::string content = readFile(fileLen, av[1]);
+        replaceOutputContent(content, av);
+    }
+    return (0);
 }
