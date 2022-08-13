@@ -20,6 +20,7 @@ void HumanB::setWeapon( Weapon *weapon )
 
 void HumanB::attack()
 {
-    std::cout << _name << " attacks with their " << _weapPtr->getType() << std::endl;
+    if ( _weapPtr != NULL )
+        std::cout << _name << " attacks with their " << _weapPtr->getType() << std::endl;
     return;
 }

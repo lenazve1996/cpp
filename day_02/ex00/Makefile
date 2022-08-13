@@ -1,7 +1,7 @@
-NAME		= harl
+NAME		= fixed
 CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
-SRC			= main.cpp Harl.cpp
+SRC			= main.cpp Fixed.cpp
 OBJ			= $(SRC:.cpp=.o)
 
 all : $(NAME)
@@ -9,7 +9,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 		$(CC) $(FLAGS) $(OBJ) -o $@
 
-%.o : %.cpp Harl.hpp
+%.o : %.cpp Fixed.hpp
 		$(CC) $(FLAGS) -c $< -o $@
 
 clean :

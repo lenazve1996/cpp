@@ -15,7 +15,7 @@ int findFileLen( char *fileName )
     }
     else
     {
-        std::cout << "error: failed to open a file" << std::endl;
+        std::cerr << "error: failed to open a file" << std::endl;
         exit (1);
     }
 }
@@ -64,11 +64,11 @@ int main( int ac, char **av )
 {
     if (ac != 4)
     {
-        std::cout << "error: wrong number of arguments" << std::endl;
+        std::cerr << "error: wrong number of arguments" << std::endl;
     }
     else if (av[2][0] == '\0')
     {
-        std::cout << "str1 is empty" << std::endl;
+        std::cerr << "error:str1 is empty" << std::endl;
     }
     else
     {
