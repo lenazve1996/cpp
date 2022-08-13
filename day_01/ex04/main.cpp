@@ -20,7 +20,7 @@ int findFileLen( char *fileName )
     }
 }
 
-std::string readFile(int fileLen, char *fileName)
+std::string readFile( int fileLen, char *fileName )
 {
     std::ifstream file (fileName);
 
@@ -31,14 +31,14 @@ std::string readFile(int fileLen, char *fileName)
     return (content);
 }
 
-std::string nameNewFile(char *inputFile)
+std::string nameNewFile( char *inputFile )
 {
     std::string inFile = inputFile;
     std::string outFile = inFile.append(".replace");
     return (outFile);
 }
 
-void    replaceOutputContent(std::string content, char **av)
+void    replaceOutputContent( std::string content, char **av )
 {
     std::string searchStr = av[2];
     std::string replacement = av[3];
@@ -60,10 +60,8 @@ void    replaceOutputContent(std::string content, char **av)
     ofs.close();
 }
 
-int main(int ac, char **av) {
-
-    std::ifstream file ("main.cpp");
-
+int main( int ac, char **av )
+{
     if (ac != 4)
     {
         std::cout << "error: wrong number of arguments" << std::endl;
@@ -74,9 +72,9 @@ int main(int ac, char **av) {
     }
     else
     {
-        int fileLen = findFileLen(av[1]);
-        std::string content = readFile(fileLen, av[1]);
-        replaceOutputContent(content, av);
+        int fileLen = findFileLen( av[1] );
+        std::string content = readFile( fileLen, av[1] );
+        replaceOutputContent( content, av );
     }
     return (0);
 }
