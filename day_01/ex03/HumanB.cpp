@@ -3,7 +3,6 @@
 HumanB::HumanB ( std::string name)
 {
     _name = name;
-    // *(_weapPtr) = type;
     std::cout << "Constructor for " << _name << " called" << std::endl;
     return;
 }
@@ -14,9 +13,9 @@ HumanB::~HumanB ()
     return;
 }
 
-void HumanB::setWeapon( Weapon weapon )
+void HumanB::setWeapon( Weapon *weapon )
 {
-    _weapPtr = &weapon;
+    _weapPtr = weapon;
 }
 
 void HumanB::attack()

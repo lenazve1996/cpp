@@ -10,6 +10,7 @@ Weapon::Weapon ( std::string weap_type )
 Weapon::~Weapon ()
 {
     std::cout << "Desctructor for weapon \"" << _type << "\" called" << std::endl;
+    std::cout << std::endl;
     return;
 }
 
@@ -20,6 +21,6 @@ std::string const & Weapon::getType()
 
 void    Weapon::setType( std::string str )
 {
-    this->_type = str;
+    _type = str;
     return;
 }
