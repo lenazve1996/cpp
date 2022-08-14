@@ -28,6 +28,7 @@ std::string readFile( int fileLen, char *fileName )
     file.read(buff, fileLen);
     file.close();
     std::string content = buff;
+    delete [] buff;
     return (content);
 }
 
