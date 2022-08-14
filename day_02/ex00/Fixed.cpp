@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Fixed.hpp"
 
 Fixed::Fixed()
@@ -14,7 +15,7 @@ Fixed::Fixed( const Fixed &oldObj )
     return;
 }
 
-Fixed& Fixed::operator=( const Fixed &fixed )
+Fixed& Fixed::operator=( Fixed const &fixed )
 {
     std::cout << "Copy assignment operator called" << std::endl;
     _fixedPoint = fixed._fixedPoint;

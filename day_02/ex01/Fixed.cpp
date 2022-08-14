@@ -1,15 +1,23 @@
+#include <iostream>
 #include "Fixed.hpp"
+
+Fixed::Fixed()
+{
+    std::cout << "Default consctructor called" << std::endl;
+    _fixedPoint = 0;
+    return;
+}
 
 Fixed::Fixed( const int integer )
 {
-    std::cout << "Default consctructor called" << std::endl;
+    std::cout << "Consctructor called for integer" << std::endl;
     _fixedPoint = integer;
     return;
 }
 
 Fixed::Fixed( const float number )
 {
-    std::cout << "Default consctructor called" << std::endl;
+    std::cout << "Consctructor called for float" << std::endl;
     _fixedPoint = number;
     return;
 }
@@ -21,9 +29,9 @@ Fixed::Fixed( const Fixed &oldObj )
     return;
 }
 
-Fixed& Fixed::operator=( const Fixed &fixed )
+Fixed& Fixed::operator=( Fixed const &fixed )
 {
-    std::cout << "Copy assignment operator called" << std::endl;
+    std::cout << "Assignation operator called" << std::endl;
     _fixedPoint = fixed._fixedPoint;
     return  *this;
 }

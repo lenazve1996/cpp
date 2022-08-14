@@ -1,14 +1,12 @@
 #ifndef FIXED_H
 # define FIXED_H
 
-#include <iostream>
-
 class Fixed {
 
 public:
     Fixed();
     Fixed( const Fixed &oldObj );
-    Fixed& operator=( const Fixed &fixed );
+    Fixed& operator=( Fixed const &fixed );
     ~Fixed();
     int getRawBits( void ) const;
     void setRawBits( int const raw );
