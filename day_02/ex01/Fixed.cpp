@@ -1,42 +1,43 @@
-#include <iostream>
 #include "Fixed.hpp"
 
-Fixed::Fixed()
+Fixed::Fixed( void )
 {
     std::cout << "Default consctructor called" << std::endl;
-    _fixedPoint = 0;
+    _raw_value = 0;
     return;
 }
 
-Fixed::Fixed( const int integer )
+Fixed::Fixed( int const integer )
 {
     std::cout << "Consctructor called for integer" << std::endl;
-    _fixedPoint = integer;
+    std::cout << _raw_value << std::endl;
+    _raw_value = integer << _fractBits;
     return;
 }
 
-Fixed::Fixed( const float number )
+Fixed::Fixed( float const number )
 {
     std::cout << "Consctructor called for float" << std::endl;
-    _fixedPoint = number;
+    std::cout << _raw_value << std::endl;
+    _raw_value = (int)(roundf(number * (1 << _fractBits)));
     return;
 }
 
-Fixed::Fixed( const Fixed &oldObj )
+Fixed::Fixed( Fixed const &oldObj )
 {
     std::cout << "Copy consctructor called" << std::endl;
-    _fixedPoint = oldObj._fixedPoint;
+    _raw_value = oldObj.getRawBits();
     return;
 }
 
 Fixed& Fixed::operator=( Fixed const &fixed )
 {
     std::cout << "Assignation operator called" << std::endl;
-    _fixedPoint = fixed._fixedPoint;
+    this->_raw_value = fixed.getRawBits();
     return  *this;
 }
 
-Fixed::~Fixed()
+Fixed::~Fixed( void )
 {
     std::cout << "Desctructor called" << std::endl;
     return;
@@ -45,16 +46,29 @@ Fixed::~Fixed()
 int Fixed::getRawBits( void ) const
 {
     std::cout << "getRawBits member function called" << std::endl;
-    return (_fixedPoint);
+    return (_raw_value);
 }
 
 void Fixed::setRawBits( int const raw )
 {
     std::cout << "setRawBits member function called" << std::endl;
-    _fixedPoint = raw;
+    _raw_value = raw;
+}
+
+float Fixed::toFloat( void ) const
+{
+    float return_value = (float)_raw_value / (1 << _fractBits);
+    return (return_value);
 }
 
 int Fixed::toInt( void ) const
 {
-    this->_fixedPoint = (int)_fixedPoint;
+    int int_value = (int)(_raw_value >> _fractBits);
+    return (int_value);
+}
+
+std::ostream & operator<<( std::ostream & output, Fixed const &fixed)
+{
+    output << fixed.toFloat();
+    return (output);
 }
