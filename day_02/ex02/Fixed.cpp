@@ -70,3 +70,83 @@ std::ostream & operator<<( std::ostream & output, Fixed const &fixed)
     output << fixed.toFloat();
     return output;
 }
+
+bool Fixed::operator > ( Fixed numb2 )
+{
+    return this->_raw_value > numb2._raw_value;
+}
+
+bool Fixed::operator < ( Fixed numb2 )
+{
+    return this->_raw_value < numb2._raw_value;
+}
+
+bool Fixed::operator >= ( Fixed numb2 )
+{
+    return this->_raw_value >= numb2._raw_value;
+}
+
+bool Fixed::operator <= ( Fixed numb2 )
+{
+    return this->_raw_value <= numb2._raw_value;
+}
+
+bool Fixed::operator == ( Fixed numb2 )
+{
+    return this->_raw_value == numb2._raw_value;
+}
+
+bool Fixed::operator != ( Fixed numb2 )
+{
+    return this->_raw_value != numb2._raw_value;
+}
+
+Fixed Fixed::operator + ( Fixed numb2 )
+{
+    Fixed sum = this->_raw_value + numb2._raw_value;
+    return sum;
+}
+
+Fixed Fixed::operator - ( Fixed numb2 )
+{
+    Fixed diff = this->_raw_value - numb2._raw_value;
+    return diff;
+}
+
+Fixed Fixed::operator * ( Fixed numb2 )
+{
+    Fixed result = this->_raw_value * numb2._raw_value;
+    return result;
+}
+
+Fixed Fixed::operator / ( Fixed numb2 )
+{
+    Fixed result = this->_raw_value / numb2._raw_value;
+    return result;
+}
+
+Fixed& Fixed::operator ++ ()
+{
+    this->_raw_value += 1;
+    return *this;
+}
+
+Fixed& Fixed::operator -- ()
+{
+    this->_raw_value -= 1;
+    return *this;
+}
+
+Fixed Fixed::operator ++ (int)
+{
+    Fixed result = this->_raw_value;
+    ++this->_raw_value;
+    return result;
+}
+
+Fixed Fixed::operator -- (int)
+{
+    Fixed result = this->_raw_value;
+    --this->_raw_value;
+    return result;
+}
