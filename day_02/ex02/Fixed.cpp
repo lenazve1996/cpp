@@ -2,28 +2,28 @@
 
 Fixed::Fixed( void )
 {
-    std::cout << "Default consctructor called" << std::endl;
+    std::cout << "Default constructor called" << std::endl;
     _raw_value = 0;
     return;
 }
 
 Fixed::Fixed( int const integer )
 {
-    std::cout << "Consctructor called for integer" << std::endl;
+    std::cout << "Constructor called for integer" << std::endl;
     _raw_value = integer << _fractBits;
     return;
 }
 
 Fixed::Fixed( float const number )
 {
-    std::cout << "Consctructor called for float" << std::endl;
+    std::cout << "Constructor called for float" << std::endl;
     _raw_value = (int)(roundf(number * (1 << _fractBits)));
     return;
 }
 
 Fixed::Fixed( Fixed const &oldObj )
 {
-    std::cout << "Copy consctructor called" << std::endl;
+    std::cout << "Copy constructor called" << std::endl;
     _raw_value = oldObj.getRawBits();
     return;
 }
@@ -37,13 +37,12 @@ Fixed& Fixed::operator=( Fixed const &fixed )
 
 Fixed::~Fixed( void )
 {
-    std::cout << "Desctructor called" << std::endl;
+    std::cout << "Destructor called" << std::endl;
     return;
 }
 
 int Fixed::getRawBits( void ) const
 {
-    std::cout << "getRawBits member function called" << std::endl;
     return _raw_value;
 }
 
@@ -55,7 +54,7 @@ void Fixed::setRawBits( int const raw )
 
 float Fixed::toFloat( void ) const
 {
-    float return_value = (float)_raw_value / (1 << _fractBits);
+    float return_value = (float)(_raw_value) / (1 << _fractBits);
     return return_value;
 }
 
@@ -71,58 +70,54 @@ std::ostream & operator<<( std::ostream & output, Fixed const &fixed)
     return output;
 }
 
-bool Fixed::operator > ( Fixed numb2 )
+bool Fixed::operator > ( Fixed const &numb2 )
 {
     return this->_raw_value > numb2._raw_value;
 }
 
-bool Fixed::operator < ( Fixed numb2 )
+bool Fixed::operator < ( Fixed const &numb2 )
 {
     return this->_raw_value < numb2._raw_value;
 }
 
-bool Fixed::operator >= ( Fixed numb2 )
+bool Fixed::operator >= ( Fixed const &numb2 )
 {
     return this->_raw_value >= numb2._raw_value;
 }
 
-bool Fixed::operator <= ( Fixed numb2 )
+bool Fixed::operator <= ( Fixed const &numb2 )
 {
     return this->_raw_value <= numb2._raw_value;
 }
 
-bool Fixed::operator == ( Fixed numb2 )
+bool Fixed::operator == ( Fixed const &numb2 )
 {
     return this->_raw_value == numb2._raw_value;
 }
 
-bool Fixed::operator != ( Fixed numb2 )
+bool Fixed::operator != ( Fixed const &numb2 )
 {
     return this->_raw_value != numb2._raw_value;
 }
 
-Fixed Fixed::operator + ( Fixed numb2 )
+Fixed Fixed::operator + ( Fixed const &numb2 )
 {
-    Fixed sum = this->_raw_value + numb2._raw_value;
-    return sum;
+    return Fixed (this->toFloat() + numb2.toFloat());
 }
 
-Fixed Fixed::operator - ( Fixed numb2 )
+Fixed Fixed::operator - ( Fixed const &numb2 )
 {
-    Fixed diff = this->_raw_value - numb2._raw_value;
-    return diff;
+    return Fixed (this->toFloat() - numb2.toFloat());
 }
 
-Fixed Fixed::operator * ( Fixed numb2 )
+Fixed Fixed::operator * ( Fixed const &numb2 )
 {
-    Fixed result = this->_raw_value * numb2._raw_value;
-    return result;
+    return Fixed (this->toFloat() * numb2.toFloat());
 }
 
-Fixed Fixed::operator / ( Fixed numb2 )
+Fixed Fixed::operator / ( Fixed const &numb2 )
 {
-    Fixed result = this->_raw_value / numb2._raw_value;
-    return result;
+    return Fixed (this->toFloat() / numb2.toFloat());
 }
 
 Fixed& Fixed::operator ++ ()
@@ -139,14 +134,48 @@ Fixed& Fixed::operator -- ()
 
 Fixed Fixed::operator ++ (int)
 {
-    Fixed result = this->_raw_value;
+    Fixed result;
+    result._raw_value = this->_raw_value;
     ++this->_raw_value;
     return result;
 }
 
 Fixed Fixed::operator -- (int)
 {
-    Fixed result = this->_raw_value;
+    Fixed result;
+    result._raw_value = this->_raw_value;
     --this->_raw_value;
     return result;
+}
+
+Fixed& Fixed::min( Fixed &numb1, Fixed &numb2)
+{
+    if (numb1.getRawBits() < numb2.getRawBits())
+        return numb1;
+    else
+        return numb2;
+}
+
+Fixed& Fixed::max ( Fixed &numb1, Fixed &numb2)
+{
+    if (numb1.getRawBits() > numb2.getRawBits())
+        return numb1;
+    else
+        return numb2;
+}
+
+Fixed const & Fixed::min( Fixed const &numb1, Fixed const &numb2)
+{
+    if (numb1.getRawBits() < numb2.getRawBits())
+        return numb1;
+    else
+        return numb2;
+}
+
+Fixed const & Fixed::max ( Fixed const &numb1, Fixed const &numb2)
+{
+    if (numb1.getRawBits() > numb2.getRawBits())
+        return numb1;
+    else
+        return numb2;
 }
