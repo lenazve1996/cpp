@@ -85,6 +85,26 @@ void ClapTrap::beRepaired( unsigned int amount )
     }
 }
 
+// std::string ClapTrap::getName()
+// {
+//     return this->_name;
+// }
+
+// int ClapTrap::getHitPoints()
+// {
+//     return this->_hit_points;
+// }
+
+// int ClapTrap::getEnergyPoints()
+// {
+//     return this->_energy_points;
+// }
+
+// int ClapTrap::getAttackDamage()
+// {
+//     return this->_attack_damage;
+// }
+
 void ClapTrap::outOfPoints( void )
 {
     std::cout << std::endl;
