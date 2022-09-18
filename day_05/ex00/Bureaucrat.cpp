@@ -10,8 +10,8 @@ Bureaucrat::Bureaucrat()
 Bureaucrat::Bureaucrat( std::string name, int grade ) : _name(name)
 {
     std::cout << "Constructor for Bureaucrat called" << std::endl;
-    // this->_name = name;
-    this->_grade = grade;
+    if (grade < 1 || grade > 150)
+        this->_grade = grade;
     return;
 }
 
@@ -40,3 +40,53 @@ int Bureaucrat::getGrade()
 {
     return this->_grade;
 }
+
+Bureaucrat &Bureaucrat::operator++()
+{
+    if ( this->_grade <= 1 )
+    {
+        std::cout << "exeption" << std::endl;
+        exit;
+    }
+    else
+        this->_grade -= 1;
+    return *this;
+}
+
+Bureaucrat &Bureaucrat::operator--()
+{
+    if ( this->_grade >= 150 )
+    {
+        std::cout << "exeption" << std::endl;
+        exit;
+    }
+    else
+        this->_grade += 1;
+    return *this;
+}
+
+Bureaucrat &Bureaucrat::operator++( int )
+{
+    if ( this->_grade <= 1 )
+    {
+        std::cout << "exeption" << std::endl;
+        exit;
+    }
+    else
+    {
+        Bureaucrat newBur = *this;
+        this->_grade -= 1;
+        return newBur;
+    }
+}
+
+Bureaucrat &Bureaucrat::operator--( int )
+{
+
+}
+
+// std::ostream & operator<< ( std::ostream &out )
+// {
+//     out << bur.getName() << " , bureaucrat grade " << bur.getGrade() << std::endl;
+//     return out;
+// }

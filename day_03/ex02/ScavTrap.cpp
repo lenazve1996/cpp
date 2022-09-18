@@ -4,6 +4,10 @@
 ScavTrap::ScavTrap ()
 {
     std::cout << "Default contstructor for ScavTrap called" << std::endl;
+    _hit_points = 100;
+    _energy_points = 50;
+    _attack_damage = 20;
+    return;
 }
 
 ScavTrap::ScavTrap( std::string name ) : ClapTrap( name )

@@ -13,6 +13,9 @@ public:
     ~Bureaucrat();
     std::string getName();
     int getGrade();
+    Bureaucrat &Bureaucrat::operator++();
+    Bureaucrat &Bureaucrat::operator--();
+    // std::ostream &operator<<( std::ostream &out, Bureaucrat const &bur );
 
 private:
     const std::string _name;
