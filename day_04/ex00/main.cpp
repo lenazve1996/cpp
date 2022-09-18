@@ -19,17 +19,17 @@ int main()
     meta->makeSound();
     std::cout << std::endl;
 
-    std::cout << std::endl << "SECOND TEST" << std::endl;
+    std::cout << std::endl << ">>>>>>>>>>>>>>> TEST 1 <<<<<<<<<<<<<<<"  << std::endl;
     const Animal* cat = j;
     std::cout << cat->getType() << " " << std::endl;
     cat->makeSound();
 
-    std::cout << std::endl << "THIRD TEST" << std::endl;
+    std::cout << std::endl << ">>>>>>>>>>>>>>> TEST 2 <<<<<<<<<<<<<<<"  << std::endl;
     const Animal* dog = i;
     std::cout << dog->getType() << " " << std::endl;
     dog->makeSound();
 
-    std::cout << std::endl << "FOURTH TEST" << std::endl;
+    std::cout << std::endl << ">>>>>>>>>>>>>>> TEST 3 <<<<<<<<<<<<<<<"  << std::endl;
     const Animal* animal(meta);
     std::cout << animal->getType() << " " << std::endl;
     animal->makeSound();
