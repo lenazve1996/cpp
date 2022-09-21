@@ -7,6 +7,7 @@ Dog::Dog()
     std::cout << "Default constructor for Dog called" << std::endl;
     this->type = "Dog";
     this->_brain = new Brain();
+    this->_brain->setIdeas( "I don't like cats" );
     return;
 }
 

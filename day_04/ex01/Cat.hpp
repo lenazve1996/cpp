@@ -14,8 +14,7 @@ public:
     Cat& operator=( const Cat &other );
     ~Cat();
     void makeSound() const;
-    void getBrain();
-    void setbrain();
+    Brain *getBrain();
 
 private:
     Brain *_brain;

@@ -29,3 +29,25 @@ Brain::~Brain()
     std::cout << "Destructor for Brain called" << std::endl;
     return;
 }
+
+std::string *Brain::getIdeas()
+{
+    return this->ideas;
+}
+
+void Brain::setIdeas( std::string idea )
+{
+    for (int counter = 0; counter < 100; counter++)
+    {
+        this->ideas[counter] = idea;
+    }
+}
+
+void Brain::print5Ideas()
+{
+    for (int counter = 0; counter < 5; counter++)
+    {
+        std::cout << this->ideas[counter] << std::endl;
+    }
+}
+
