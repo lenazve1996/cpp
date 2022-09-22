@@ -55,8 +55,8 @@ int main()
     const WrongAnimal* BrokenCat = new WrongCat();
 
     std::cout << std::endl << ">>>>>>>>>>>>>>> TEST 9 <<<<<<<<<<<<<<<"  << std::endl << std::endl;
-    std::cout << BrokenAnimal->getType() << " " << std::endl;
-    std::cout << BrokenCat->getType() << " " << std::endl << std::endl;
+    std::cout << BrokenAnimal->getType() << std::endl;
+    std::cout << BrokenCat->getType() << std::endl << std::endl;
 
     BrokenAnimal->makeSound();
     BrokenCat->makeSound();
@@ -64,6 +64,5 @@ int main()
 
     delete BrokenAnimal;
     delete BrokenCat;
-    std::cout << std::endl;
     return 0;
 }
