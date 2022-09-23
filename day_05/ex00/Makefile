@@ -9,7 +9,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 		$(CC) $(FLAGS) $(OBJ) -o $@
 
-%.o : %.cpp bureaucrat.hpp
+%.o : %.cpp Bureaucrat.hpp
 		$(CC) $(FLAGS) -c $< -o $@
 
 clean :
