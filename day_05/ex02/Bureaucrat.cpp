@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat()
@@ -16,7 +15,7 @@ Bureaucrat::Bureaucrat( std::string name, int grade ) : _name(name)
     }
     catch ( std::exception &err )
     {
-        std::cout << err.what() << std::endl << std::endl;
+        std::cout << err.what() << std::endl;
         _grade = 150;
     }
     return;
@@ -68,7 +67,7 @@ Bureaucrat &Bureaucrat::operator++()
     }
     catch ( std::exception &err )
     {
-        std::cout << err.what() << std::endl << std::endl;
+        std::cout << err.what() << std::endl;
     }
     return *this;
 }
@@ -81,9 +80,19 @@ Bureaucrat &Bureaucrat::operator--()
     }
     catch ( std::exception &err )
     {
-        std::cout << err.what() << std::endl << std::endl;
+        std::cout << err.what() << std::endl;
     }
     return *this;
+}
+
+void Bureaucrat::signForm( std::string formName, std::string status ) const
+{
+    if (status == "Signed")
+        std::cout << "Bureaucrat " << this->_name << " signed form " \
+        << formName << std::endl;
+    else
+        std::cout << "Bureaucrat " << this->_name << " couldn’t sign form \"" \
+        << formName << "\" because bureaucrat's grade is too low" << std::endl;
 }
 
 std::ostream & operator << ( std::ostream &out, Bureaucrat const &bur )

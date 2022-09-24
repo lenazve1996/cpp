@@ -2,6 +2,9 @@
 # define BUREAUCRAT_H
 
 #include <string>
+#include <iostream>
+
+class Form;
 
 class Bureaucrat {
 
@@ -16,12 +19,13 @@ public:
     void setGrade( int grade );
     Bureaucrat &operator++();
     Bureaucrat &operator--();
+    void signForm( std::string formName, std::string status ) const;
 
     class GradeTooHighException : public std::exception { 
     public:
         virtual const char *what() const throw()
         {
-            return ("Grade is too high");
+            return ("Grade is too high for bureaucrat");
         }
     };
 
@@ -29,7 +33,7 @@ public:
     public:
         virtual const char *what() const throw()
         {
-            return ("Grade is too low");
+            return ("Grade is too low for bureaucrat");
         }
     };
 
