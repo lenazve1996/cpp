@@ -3,6 +3,7 @@
 Bureaucrat::Bureaucrat()
 {
     std::cout << "Default constructor for Bureaucrat called" << std::endl;
+    _grade = 150;
     return;
 }
 

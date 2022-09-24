@@ -1,7 +1,7 @@
 NAME		= bureaucrat
 CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
-SRC			= main.cpp Bureaucrat.cpp Form.cpp
+SRC			= main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp
 OBJ			= $(SRC:.cpp=.o)
 
 all : $(NAME)
@@ -9,7 +9,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 		$(CC) $(FLAGS) $(OBJ) -o $@
 
-%.o : %.cpp Bureaucrat.hpp Form.hpp
+%.o : %.cpp Bureaucrat.hpp Form.hpp ShrubberyCreationForm.hpp
 		$(CC) $(FLAGS) -c $< -o $@
 
 clean :

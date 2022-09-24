@@ -1,6 +1,6 @@
 #include "Form.hpp"
 
-Form::Form() : _signGrade(0), _executeGrade(0)
+Form::Form() : _name("name not assigned"), _signGrade(0), _executeGrade(0)
 {
     std::cout << "Default constructor for form called" << std::endl;
     _signed = 0;
@@ -107,6 +107,12 @@ void Form::beSigned( Bureaucrat const &bur )
     {
         std::cerr << e.what() << '\n';
     }
+}
+
+void Form::execute(Bureaucrat const & executor) const
+{
+    (void)executor;
+    return;
 }
 
 std::ostream & operator << ( std::ostream &out, Form &form )

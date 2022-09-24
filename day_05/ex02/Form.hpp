@@ -5,8 +5,6 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 
-class Bureaucrat;
-
 class Form {
 
 public:
@@ -16,12 +14,13 @@ public:
     Form& operator=( const Form &other );
     ~Form();
     std::string getName() const;
-    bool getSigned();
+    bool getSigned() const;
     int getSignGrade() const;
     int getExecuteGrade() const;
     void checkSignGrade( int grade );
     void checkExecuteGrade( int grade );
     void beSigned( Bureaucrat const &bur );
+    virtual void execute(Bureaucrat const & executor) const = 0;
 
     class GradeTooHighException : public std::exception {
     public:

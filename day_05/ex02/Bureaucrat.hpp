@@ -4,8 +4,6 @@
 #include <string>
 #include <iostream>
 
-class Form;
-
 class Bureaucrat {
 
 public:
@@ -20,6 +18,7 @@ public:
     Bureaucrat &operator++();
     Bureaucrat &operator--();
     void signForm( std::string formName, std::string status ) const;
+    // void executeForm(Form const & form);
 
     class GradeTooHighException : public std::exception { 
     public:
