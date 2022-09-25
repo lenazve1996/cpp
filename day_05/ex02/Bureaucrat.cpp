@@ -16,7 +16,7 @@ Bureaucrat::Bureaucrat( std::string name, int grade ) : _name(name)
     }
     catch ( std::exception &err )
     {
-        std::cout << err.what() << std::endl;
+        std::cerr << err.what() << std::endl;
         _grade = 150;
     }
     return;
@@ -68,7 +68,7 @@ Bureaucrat &Bureaucrat::operator++()
     }
     catch ( std::exception &err )
     {
-        std::cout << err.what() << std::endl;
+        std::cerr << err.what() << std::endl;
     }
     return *this;
 }
@@ -81,23 +81,43 @@ Bureaucrat &Bureaucrat::operator--()
     }
     catch ( std::exception &err )
     {
-        std::cout << err.what() << std::endl;
+        std::cerr << err.what() << std::endl;
     }
     return *this;
 }
 
-void Bureaucrat::signForm( std::string formName, std::string status ) const
+void Bureaucrat::signForm( Form &form )
 {
-    if (status == "Signed")
+    try
+    {
+        form.beSigned(*this);
         std::cout << "Bureaucrat " << this->_name << " signed form " \
-        << formName << std::endl;
-    else
-        std::cout << "Bureaucrat " << this->_name << " couldn’t sign form \"" \
-        << formName << "\" because bureaucrat's grade is too low" << std::endl;
+        << form.getName() << std::endl << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Bureaucrat " << this->_name << " couldn’t sign form \"" << form.getName()\
+         << "\" because " << e.what() << std::endl << std::endl;
+    }
+}
+
+void Bureaucrat::executeForm( Form &form )
+{
+    try
+    {
+        form.execute(*this);
+        std::cout << "Bureaucrat " << this->_name << " executed form " \
+        << form.getName() << std::endl << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Bureaucrat " << this->_name << " couldn’t execute form \"" \
+        << form.getName() << "\" because " << e.what() << std::endl << std::endl;
+    }
 }
 
 std::ostream & operator << ( std::ostream &out, Bureaucrat const &bur )
 {
-    out << bur.getName() << ", bureaucrat grade " << bur.getGrade() << std::endl;
+    out << bur.getName() << ", bureaucrat grade " << bur.getGrade() << std::endl << std::endl;
     return out;
 }

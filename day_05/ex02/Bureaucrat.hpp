@@ -3,6 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat {
 
@@ -17,8 +20,8 @@ public:
     void setGrade( int grade );
     Bureaucrat &operator++();
     Bureaucrat &operator--();
-    void signForm( std::string formName, std::string status ) const;
-    // void executeForm(Form const & form);
+    void signForm( Form &form );
+    void executeForm(Form &form);
 
     class GradeTooHighException : public std::exception { 
     public:

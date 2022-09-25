@@ -16,7 +16,7 @@ Bureaucrat::Bureaucrat( std::string name, int grade ) : _name(name)
     }
     catch ( std::exception &err )
     {
-        std::cout << err.what() << std::endl;
+        std::cerr << err.what() << std::endl;
         _grade = 150;
     }
     return;
@@ -68,7 +68,7 @@ Bureaucrat &Bureaucrat::operator++()
     }
     catch ( std::exception &err )
     {
-        std::cout << err.what() << std::endl;
+        std::cerr << err.what() << std::endl;
     }
     return *this;
 }
@@ -81,7 +81,7 @@ Bureaucrat &Bureaucrat::operator--()
     }
     catch ( std::exception &err )
     {
-        std::cout << err.what() << std::endl;
+        std::cerr << err.what() << std::endl;
     }
     return *this;
 }

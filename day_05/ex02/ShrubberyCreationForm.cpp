@@ -13,17 +13,18 @@ Form(target, 145, 137)
     return;
 }
 
-// ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm &other ) : Form( const ShrubberyCreationForm &other )
-// {
-//     this->_signed = other._signed;
-//     return;
-// }
+ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm &other ) : \
+Form( other.getName(), other.getSignGrade(), other.getExecuteGrade() )
+{
+    *this = other;
+    return;
+}
 
-// ShrubberyCreationForm& ShrubberyCreationForm::operator=( const ShrubberyCreationForm &other )
-// {
-//     this->_signed = other._signed;
-//     return *this;
-// }
+ShrubberyCreationForm& ShrubberyCreationForm::operator=( const ShrubberyCreationForm &other )
+{
+    (void)other;
+    return *this;
+}
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
@@ -31,28 +32,35 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
     return;
 }
 
-void ShrubberyCreationForm::createSrubbery()
+void ShrubberyCreationForm::createSrubbery() const
 {
+    std::string outFile;
+    std::ifstream inFile ("trees");
+    std::ofstream file;
+    outFile = this->getName() + "_shrubbery";
+    if (inFile.is_open())
+    {
+        file.open(outFile);
+        file << inFile.rdbuf();
+    }
     
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-    if (this->getSigned() == 1)
-    try
+    if (this->getSigned())
     {
-        if (executor.getGrade() <= this->getExecuteGrade() && this->getSigned())
+        if (executor.getGrade() <= this->getExecuteGrade())
         {
             this->createSrubbery();
         }
         else
         {
-            bur.signForm(this->_name, "notSigned");
             throw GradeTooLowException();
         }
     }
-    catch(const std::exception& e)
+    else
     {
-        std::cerr << e.what() << '\n';
+        throw FormIsNotSigned();
     }
 }

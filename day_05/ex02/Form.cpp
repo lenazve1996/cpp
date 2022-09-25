@@ -73,7 +73,7 @@ void Form::checkExecuteGrade( int grade )
         throw GradeTooLowException();
 }
 
-bool Form::getSigned()
+bool Form::getSigned() const
 {
     return this->_signed;
 }
@@ -90,22 +90,13 @@ int Form::getExecuteGrade() const
 
 void Form::beSigned( Bureaucrat const &bur )
 {
-    try
+    if (bur.getGrade() <= this->getSignGrade())
     {
-        if (bur.getGrade() <= this->getSignGrade())
-        {
-            bur.signForm(this->_name, "Signed");
-            this->_signed = 1;
-        }
-        else
-        {
-            bur.signForm(this->_name, "notSigned");
-            throw GradeTooLowException();
-        }
+        this->_signed = 1;
     }
-    catch(const std::exception& e)
+    else
     {
-        std::cerr << e.what() << '\n';
+        throw GradeTooLowException();
     }
 }
 
@@ -123,6 +114,6 @@ std::ostream & operator << ( std::ostream &out, Form &form )
     else
         out << " isn't signed";
     out << ", form sign grade: " << form.getSignGrade() \
-    << ", execute grade: " << form.getExecuteGrade() << std::endl;
+    << ", execute grade: " << form.getExecuteGrade() << std::endl << std::endl;
     return out;
 }

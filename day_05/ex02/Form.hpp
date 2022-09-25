@@ -5,6 +5,8 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 
+class Bureaucrat;
+
 class Form {
 
 public:
@@ -35,6 +37,14 @@ public:
         virtual const char *what() const throw()
         {
             return ("Grade is too low for form");
+        }
+    };
+
+    class FormIsNotSigned : public std::exception {
+    public:
+        virtual const char *what() const throw()
+        {
+            return ("form is not signed");
         }
     };
 
