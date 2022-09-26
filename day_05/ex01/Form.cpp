@@ -90,22 +90,13 @@ int Form::getExecuteGrade() const
 
 void Form::beSigned( Bureaucrat const &bur )
 {
-    try
+    if (bur.getGrade() <= this->getSignGrade())
     {
-        if (bur.getGrade() <= this->getSignGrade())
-        {
-            bur.signForm(this->_name, "Signed");
-            this->_signed = 1;
-        }
-        else
-        {
-            bur.signForm(this->_name, "notSigned");
-            throw GradeTooLowException();
-        }
+        this->_signed = 1;
     }
-    catch(const std::exception& e)
+    else
     {
-        std::cerr << e.what() << '\n';
+        throw GradeTooLowException();
     }
 }
 

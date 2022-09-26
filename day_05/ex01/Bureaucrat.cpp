@@ -86,14 +86,19 @@ Bureaucrat &Bureaucrat::operator--()
     return *this;
 }
 
-void Bureaucrat::signForm( std::string formName, std::string status ) const
+void Bureaucrat::signForm( Form &form )
 {
-    if (status == "Signed")
+    try
+    {
+        form.beSigned(*this);
         std::cout << "Bureaucrat " << this->_name << " signed form " \
-        << formName << std::endl;
-    else
-        std::cout << "Bureaucrat " << this->_name << " couldn’t sign form \"" \
-        << formName << "\" because bureaucrat's grade is too low" << std::endl;
+        << form.getName() << std::endl << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Bureaucrat " << this->_name << " couldn’t sign form \"" << form.getName()\
+         << "\" because " << e.what() << std::endl << std::endl;
+    }
 }
 
 std::ostream & operator << ( std::ostream &out, Bureaucrat const &bur )

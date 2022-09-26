@@ -13,7 +13,7 @@ int main()
 
     std::cout << ">>>>>>>>>> TEST 4 <<<<<<<<<<"  << std::endl << std::endl;
     Bureaucrat Jacob("Jacob", 150);
-    std::cout << std::endl << Jacob << std::endl;
+    std::cout << std::endl << Jacob;
     ++Jacob;
     std::cout << std::endl << Jacob << std::endl;
 

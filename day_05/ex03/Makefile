@@ -2,7 +2,7 @@ NAME		= bureaucrat
 CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
 SRC			= main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp \
-			RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+			RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 OBJ			= $(SRC:.cpp=.o)
 
 all : $(NAME)
@@ -11,7 +11,7 @@ $(NAME) : $(OBJ)
 		$(CC) $(FLAGS) $(OBJ) -o $@
 
 %.o : %.cpp Bureaucrat.hpp Form.hpp ShrubberyCreationForm.hpp \
-			RobotomyRequestForm.hpp PresidentialPardonForm.hpp
+			RobotomyRequestForm.hpp PresidentialPardonForm.hpp Intern.hpp
 		$(CC) $(FLAGS) -c $< -o $@
 
 clean :

@@ -21,6 +21,7 @@ public:
     Bureaucrat &operator++();
     Bureaucrat &operator--();
     void signForm( Form &form );
+    void executeForm(Form &form);
 
     class GradeTooHighException : public std::exception { 
     public:
@@ -37,6 +38,7 @@ public:
             return ("Grade is too low for bureaucrat");
         }
     };
+
 
 private:
     const std::string _name;

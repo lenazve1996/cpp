@@ -12,7 +12,7 @@ int main()
     std::cout << std::endl << form2 << std::endl;
 
     std::cout << ">>>>>>>>>> TEST 3 <<<<<<<<<<"  << std::endl << std::endl;
-    Bureaucrat Julia("Julia", 20);
+    Bureaucrat Julia("Julia", 25);
     std::cout << std::endl << Julia << std::endl;
 
     Bureaucrat John("John", 150);
@@ -21,10 +21,8 @@ int main()
     Form form3("Form3", 25, 25);
     std::cout << std::endl << form3 << std::endl;
 
-    form3.beSigned(Julia);
-    std::cout << std::endl << form3 << std::endl;
-    form3.beSigned(John);
-    std::cout << std::endl;
-
+    John.signForm(form3);
+    std::cout << form3 << std::endl;
+    Julia.signForm(form3);
     return 0;
 }
