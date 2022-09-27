@@ -2,23 +2,17 @@
 
 Intern::Intern() 
 {
-    std::cout << "Default constructor for Intern called" << std::endl;
+    std::cout << "Default constructor for Intern called" << std::endl << std::endl;
     return;
 }
-
-// Intern::Intern( std::string target ) 
-//     : Form("Intern", SIGN_PARDON, EXEC_PARDON, target)
-// {
-//     std::cout << "Constructor for Intern called" << std::endl;
-//     return;
-// }
 
 Intern::Intern( const Intern &other )
 {
+    *this = other;
     return;
 }
 
-Intern& Intern::operator=( const Intern &other )
+Intern& Intern::operator=( const Intern & )
 {
     return *this;
 }
@@ -31,49 +25,57 @@ Intern::~Intern()
 
 Form *Intern::makePresidentialPardonForm(std::string target)
 {
+    std::cout << "Intern creates PresidentialPardonForm" << std::endl << std::endl;
     PresidentialPardonForm *form = new PresidentialPardonForm(target);
     return form;
 }
 
 Form *Intern::makeRobotomyRequestForm(std::string target)
 {
+    std::cout << "Intern creates RobotomyRequestForm" << std::endl << std::endl;
     RobotomyRequestForm *form = new RobotomyRequestForm(target);
     return form;
 }
 
 Form *Intern::makeShrubberyCreationForm(std::string target)
 {
+    std::cout << "Intern creates ShrubberyCreationForm" << std::endl << std::endl;
     ShrubberyCreationForm *form = new ShrubberyCreationForm(target);
     return form;
 }
 
 Form *Intern::makeForm(std::string formName, std::string target)
 {
-    Form *(Intern::*funcs[3])( std::string target ) = {
-    &Intern::makePresidentialPardonForm,
-    &Intern::makeRobotomyRequestForm,
-    &Intern::makeShrubberyCreationForm,
-    };
-
-    std::string forms[3] = {
-    "makePresidentialPardonForm",
-    "RobotomyRequestForm",
-    "ShrubberyCreationForm",
-    };
-
-    for (int i = 0; i < 3; i++)
+    Form *newForm = NULL;
+    try
     {
-        if (formName == forms[i])
-            this->*funcs[i](target);
+        Form *(Intern::*funcs[3])( std::string target ) = {
+        &Intern::makePresidentialPardonForm,
+        &Intern::makeRobotomyRequestForm,
+        &Intern::makeShrubberyCreationForm,
+        };
+
+        std::string forms[3] = {
+        "pardon request",
+        "robotomy request",
+        "shrubbery request",
+        };
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (formName == forms[i])
+            {
+                newForm = (this->*funcs[i])(target);
+                return newForm;
+            }
+            else
+                throw WrongFormName();
+            
+        }
     }
-    
-    // try
-    // {
-    //     if ()
-    // }
-    // catch(const std::exception& e)
-    // {
-    //     std::cerr << e.what() << '\n';
-    // }
-    
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    return newForm;
 }

@@ -15,7 +15,7 @@ public:
     Form( std::string name, int gToSign, int gToExecute, std::string target );
     Form( const Form &other );
     Form& operator=( const Form &other );
-    ~Form();
+    virtual ~Form();
     std::string getName() const;
     bool getSigned() const;
     int getSignGrade() const;
