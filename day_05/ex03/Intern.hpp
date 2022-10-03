@@ -23,10 +23,11 @@ public:
 
     class WrongFormName : public std::exception
     {
-        virtual const char *what() const throw()
-        {
-            return "Wrong name of form";
-        }
+        public:
+            virtual const char *what() const throw()
+            {
+                return "Wrong name of form";
+            }
     };
 };
 

@@ -69,11 +69,10 @@ Form *Intern::makeForm(std::string formName, std::string target)
                 return newForm;
             }
             else
-                throw WrongFormName();
-            
+                throw WrongFormName();    
         }
     }
-    catch(const std::exception& e)
+    catch(Intern::WrongFormName e)
     {
         std::cerr << e.what() << '\n';
     }
