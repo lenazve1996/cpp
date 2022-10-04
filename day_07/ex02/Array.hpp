@@ -51,7 +51,7 @@ public:
         return this->_size;
     }
 
-    T &operator[](unsigned int index)
+    T &operator[](unsigned int index) const
     {
         if (index >= _size)
             throw std::out_of_range("Index out of range");
