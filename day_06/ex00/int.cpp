@@ -1,29 +1,37 @@
 #include "convertion.hpp"
 
+void displayInt(long int numb)
+{
+    if (numb > 2147483647 || numb < -2147483648)
+        std::cout << "int: Imposiible" << std::endl;
+    else
+        std::cout << "int: " << numb << std::endl;
+}
+
 void printInt(std::string str)
 {
-    printf("HERE INT\n");
-    int numb = std::stoi(str, NULL);
-    displayChar(static_cast<char>(numb));
-    std::cout << "int: " << numb << std::endl;
-    displayFloat(static_cast<float>(numb), 1);
-    std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(numb) << std::endl;
+    long int numb = std::stoi(str, NULL);
+    displayChar(numb);
+    displayInt(numb);
+    displayFloat(static_cast<float>(numb));
+    displayDouble(static_cast<double>(numb));
     exit(0);
 }
 
-bool isInt(std::string str)
+void checkInt(char *s)
 {
+    std::string str(s);
     int i = 0;
 
     if (!std::isdigit(str[i]) && str[i] != '-' && str[i] != '+')
-        return 0;
+        return;
     i++;
     while(str[i])
     {
         if (std::isdigit(str[i]))
             i++;
         else
-            return 0;
+            return;
     }
     try
     {
@@ -32,7 +40,16 @@ bool isInt(std::string str)
     }
     catch(std::invalid_argument &err)
     {
-        return 0;
+        return;
     }
-    return 1;
+    catch(std::out_of_range &err)
+    {
+        std::cout << "char: Imposiible" << std::endl;
+        std::cout << "int: Imposiible" << std::endl;
+        displayFloat(strtof(s, NULL));
+        displayDouble(strtod(s, NULL));
+        exit(0);
+    }
+    printInt(str);
+    return;
 }

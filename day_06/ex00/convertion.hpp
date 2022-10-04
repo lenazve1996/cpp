@@ -8,15 +8,17 @@
 #include <cctype>
 #include <cmath>
 
-bool    isInt(std::string str);
-float   isFloat(char *str);
-float   isDouble(char *str);
-void    printDouble(char *str);
-void    printInt(std::string str);
-void    printFloat(char *str);
-int     findPrecision(char *s);
-void    displayChar(char symbol);
-void    displayFloat(float numb, int prec);
+void    checkInt(char *s);
+void    checkChar(std::string str);
+void    checkFloat(char *str);
+void    checkDouble(char *str);
+
+void    displayChar(long int symbol);
+void    displayInt(long int numb);
+void    displayFloat(float numb);
+void    displayDouble(double numb);
+
 void    impossibleConvertion();
+
 
 #endif

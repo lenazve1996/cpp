@@ -1,30 +1,39 @@
 #include "convertion.hpp"
 
+int findPrecisionDouble(char *s)
+{
+    std::string str(s);
+    unsigned long point_occur = str.find('.');
+    if (point_occur != std::string::npos)
+    {
+        return (str.length() - point_occur - 1);
+    }
+    else
+        return 0;
+}
+
 void printDouble(char *str)
 {
-    printf("HERE DOUBLE\n");
     double numb = strtod(str, NULL);
-    int prec = findPrecision(str);
-    displayChar(static_cast<char>(numb));
-    std::cout << "int: " << static_cast<int>(round(numb)) << std::endl;
-    displayFloat(static_cast<float>(numb), prec);
-    std::cout << "double: " << std::fixed<< std::setprecision(prec) << numb << std::endl;
+    displayChar(static_cast<long int>(numb));
+    if (isnan(numb) || isinf(numb))
+        displayInt(-2147483649);
+    else
+        displayInt(static_cast<long int>(round(numb)));
+    displayFloat(static_cast<float>(numb));
+    displayDouble(static_cast<double>(numb));
     exit(0);
 }
 
-float   isDouble(char *str)
+void   checkDouble(char *str)
 {
     char* pEnd;
-    double numb = strtod(str, &pEnd);
-    std::cout << numb << std::endl;
-    std::cout << ">>>" << *pEnd << std::endl;
+    strtod(str, &pEnd);
     if (*pEnd != '\0')
     {
         impossibleConvertion();
-        std::cout << "here_double_failed" << std::endl;
-        exit(0);
     }
     else
         printDouble(str);
-    return numb;
+    return;
 }
